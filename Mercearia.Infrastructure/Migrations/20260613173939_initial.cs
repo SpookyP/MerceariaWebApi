@@ -17,8 +17,8 @@ namespace Mercearia.Infrastructure.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Nif = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: false),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Nif = table.Column<string>(type: "nchar(9)", fixedLength: true, maxLength: 9, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Ativo = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -40,6 +40,18 @@ namespace Mercearia.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Produtos", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Fornecedores_Email",
+                table: "Fornecedores",
+                column: "Email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Fornecedores_Nif",
+                table: "Fornecedores",
+                column: "Nif",
+                unique: true);
         }
 
         /// <inheritdoc />
