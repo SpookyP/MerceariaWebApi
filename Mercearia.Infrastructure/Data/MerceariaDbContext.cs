@@ -17,6 +17,8 @@ namespace Mercearia.Infrastructure.Data
         }
         // Representa a tabela "Produtos" na base de dados
         public DbSet<Produto> Produtos { get; set; }
+
+        public DbSet<Fornecedor> Fornecedores { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Aqui podemos configurar regras específicas (Fluent API)
@@ -24,6 +26,19 @@ namespace Mercearia.Infrastructure.Data
             modelBuilder.Entity<Produto>()
             .Property(p => p.Preco)
             .HasColumnType("decimal(18,2)");
+
+            modelBuilder.Entity<Fornecedor>()
+            .Property(p => p.Nif)
+            .HasMaxLength(9)
+            .IsFixedLength();
+
+            modelBuilder.Entity<Fornecedor>()
+            .HasIndex(f => f.Nif)
+            .IsUnique();
+
+            modelBuilder.Entity<Fornecedor>()
+            .HasIndex(f => f.Email)
+            .IsUnique();
 
             base.OnModelCreating(modelBuilder);
         }
