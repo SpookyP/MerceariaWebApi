@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Mercearia.Infrastructure.Migrations
 {
     [DbContext(typeof(MerceariaDbContext))]
-    [Migration("20260613151853_initial")]
+    [Migration("20260613173939_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -36,18 +36,25 @@ namespace Mercearia.Infrastructure.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Nif")
                         .IsRequired()
                         .HasMaxLength(9)
-                        .HasColumnType("nvarchar(9)");
+                        .HasColumnType("nchar(9)")
+                        .IsFixedLength();
 
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("Nif")
+                        .IsUnique();
 
                     b.ToTable("Fornecedores");
                 });
