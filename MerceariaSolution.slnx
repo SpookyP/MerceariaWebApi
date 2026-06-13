@@ -1,0 +1,14 @@
+<Solution>
+  <Project Path="Mercearia.Api/Mercearia.Api.csproj">
+    <BuildDependency Project="Mercearia.Application/Mercearia.Application.csproj" />
+    <BuildDependency Project="Mercearia.Infrastructure/Mercearia.Infrastructure.csproj" />
+  </Project>
+  <Project Path="Mercearia.Application/Mercearia.Application.csproj">
+    <BuildDependency Project="Mercearia.Domain/Mercearia.Domain.csproj" />
+  </Project>
+  <Project Path="Mercearia.Domain/Mercearia.Domain.csproj" />
+  <Project Path="Mercearia.Infrastructure/Mercearia.Infrastructure.csproj">
+    <BuildDependency Project="Mercearia.Application/Mercearia.Application.csproj" />
+    <BuildDependency Project="Mercearia.Domain/Mercearia.Domain.csproj" />
+  </Project>
+</Solution>
